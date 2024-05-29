@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id "application"
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '11'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation  'org.apache.flink:flink-java:1.15.2',
+            'org.apache.flink:flink-streaming-java:1.15.2',
+            'org.apache.flink:flink-runtime:1.15.2',
+            'org.apache.flink:flink-runtime-web:1.15.2'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+}
+
+
+application  {
+    mainClass  = 'org.example.Main'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': application.mainClass
+    }
+}
+
