@@ -61,6 +61,9 @@ public class Main {
         public void process(Integer integer, ProcessWindowFunction<Tuple2<String, Long>, String, Integer, TimeWindow>.Context context, Iterable<Tuple2<String, Long>> elements, org.apache.flink.util.Collector<String> collector) throws Exception {
             List<String> numbers = new ArrayList<>();
             for (Tuple2<String, Long> element : elements) {
+                if (element.f0.startsWith("111")){
+                    throw new RuntimeException();
+                }
                 numbers.add(element.f0);
             }
             collector.collect("Window for key " + integer + ": " + numbers);
